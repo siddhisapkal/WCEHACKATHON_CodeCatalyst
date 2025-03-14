@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMatch - Find Your Mentor/Mentee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="skillmatch.css">
+    <!-- Add Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <!-- Selection Screen -->
+    <div id="selectionScreen" class="selection-screen">
+        <h1>Choose Your Path</h1>
+        <div class="selection-buttons">
+            <button id="findMentor" class="selection-btn mentor-btn">
+                <i class="fas fa-user-tie"></i>
+                <span>Find a Mentor</span>
+                <p>Connect with experienced professionals</p>
+            </button>
+            <button id="findMentee" class="selection-btn mentee-btn">
+                <i class="fas fa-user-graduate"></i>
+                <span>Find a Mentee</span>
+                <p>Share your knowledge and guide others</p>
+            </button>
+        </div>
+    </div>
+
+    <!-- Profiles Screen (Initially Hidden) -->
+    <div id="profilesScreen" class="profiles-screen hidden">
+        <div class="profiles-header">
+            <button id="backButton" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h2 id="profilesTitle">Available Mentors</h2>
+        </div>
+        
+        <div id="cardContainer" class="card-container">
+            <!-- Cards will be loaded here -->
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="loading-spinner hidden">
+            <div class="spinner"></div>
+            <p>Loading profiles...</p>
+        </div>
+    </div>
+
+    <!-- Match Notification -->
+    <div id="matchNotification" class="match-notification">
+        <div class="match-content">
+            <i class="fas fa-handshake match-icon"></i>
+            <h2>It's a Match!</h2>
+            <p>You and <span id="matchedUserName">User</span> can now start learning together!</p>
+            <div class="match-actions">
+                <button id="startChat" class="match-btn">
+                    <i class="fas fa-comments"></i> Start Chat
+                </button>
+                <button id="continueBrowsing" class="match-btn secondary">
+                    <i class="fas fa-users"></i> Keep Browsing
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this script tag before your skillmatch.js -->
+    <script>
+        // Global error handler
+        window.addEventListener('error', function(e) {
+            console.error('Global error:', e.error);
+        });
+    </script>
+    <script src="skillmatch.js"></script>
+</body>
+</html> 

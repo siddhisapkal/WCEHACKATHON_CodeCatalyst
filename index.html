@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<htm<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillQuest - AI-Powered Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@gradio/client@0.1.4/dist/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+</head>
+<body>
+    <div id="vanta-background"></div>
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="brand">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 50 50" class="logo-svg">
+                        <defs>
+                            <linearGradient id="navLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3498db"/>
+                                <stop offset="50%" style="stop-color:#9b59b6"/>
+                                <stop offset="100%" style="stop-color:#2ecc71"/>
+                            </linearGradient>
+                        </defs>
+                        <path class="logo-path" fill="url(#navLogoGradient)" d="M25 2L32 20L50 25L32 30L25 48L18 30L0 25L18 20L25 2Z"/>
+                        <circle cx="25" cy="25" r="5" fill="#fff" class="logo-center"/>
+                    </svg>
+                </div>
+                <span class="brand-text">InovAstra</span>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Search courses...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="voice-assist-btn" id="voiceAssistBtn" title="Voice Assistance">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <a href="skillmatch.html" class="nav-link">
+                <i class="fas fa-users"></i>
+                SkillMatch
+            </a>
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </nav>
+
+
+
+
+    <div class="taskbar">
+        <div class="taskbar-content">
+            <div class="taskbar-items">
+                <div class="task-item active">
+                    <i class="fas fa-home"></i>
+                    <span class="speak">Home</span>
+                </div>
+                <div class="task-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="speak">Courses</span>
+                </div>
+                <div class="task-item">
+                    <i class="fas fa-brain"></i>
+                    <span>AI Labs</span>
+                </div>
+                <div class="task-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Keep ONLY this one bot button -->
+    <div class="chat-bot-icon" id="chatBotIcon">
+        <i class="fas fa-robot"></i>
+    </div>
+
+
+
+
+    <!-- Add this chat container -->
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-box">
+            <div class="chat-header">
+                <i class="fas fa-robot"></i>
+                <span>AI Tutor</span>
+                <button class="close-chat" id="closeChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Ask your AI Tutor anything...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&auto=format&fit=crop');">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Your <span class="highlight">Mentor.</span> Your <span class="highlight">Skills.</span><br>
+                Your <span class="highlight">Future.</span>
+            </h1>
+           
+            <p class="hero-description" style="color: #ffffff;">
+                Connect with mentors from top universities, learn new skills, and shape
+                your future with our innovative learning platform.
+            </p>
+
+
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Get Started</button>
+                <button class="btn btn-secondary">Watch Demo</button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Add this right after your hero section -->
+    <div id="demoModal" class="demo-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="video-container">
+                <video id="demoVideo" controls preload="metadata">
+                    <source src="ai.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Update the features section -->
+    <section class="features-section" id="features">
+        <h2>Our Features</h2>
+       
+        <div class="features-grid">
+            <!-- AI-Powered Learning -->
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI-Powered Learning</h3>
+                <p>Personalized learning paths adapted to your pace and style</p>
+            </div>
+
+
+
+
+            <!-- Interactive Courses -->
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>Interactive Courses</h3>
+                <p>Engage with hands-on exercises and real-world projects</p>
+            </div>
+
+
+
+
+            <!-- Expert Support -->
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Expert Support</h3>
+                <p>Get help from AI tutors and industry professionals</p>
+            </div>
+
+
+
+
+            <!-- Progress Tracking -->
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Progress Tracking</h3>
+                <p>Monitor your growth with detailed analytics and insights</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="skill-courses">
+        <h2>Featured Learning Paths</h2>
+    </div>
+
+
+
+
+    <div class="skill-section">
+        <!-- Academics -->
+        <div class="box">
+            <div class="box-content">
+                <div class="category-header">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Academics</h2>
+                </div>
+                <p class="category-subtitle">Maths, Physics, Chemistry, Biology</p>
+                <div class="box-img" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1000&auto=format&fit=crop');"></div>
+                <p class="explore-text">Explore Subjects →</p>
+            </div>
+        </div>
+
+
+
+
+        <!-- Coding -->
+        <div class="box">
+            <div class="box-content">
+                <div class="category-header">
+                    <i class="fas fa-code"></i>
+                    <h2>Coding & Development</h2>
+                </div>
+                <p class="category-subtitle">Programming, DSA, Web Development, AI/ML</p>
+                <div class="box-img" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1000&auto=format&fit=crop');"></div>
+                <p class="explore-text">Explore Technologies →</p>
+            </div>
+        </div>
+
+
+
+
+        <!-- Career -->
+        <div class="box">
+            <div class="box-content">
+                <div class="category-header">
+                    <i class="fas fa-briefcase"></i>
+                    <h2>Career & Business</h2>
+                </div>
+                <p class="category-subtitle">Entrepreneurship, Finance, Digital Marketing</p>
+                <div class="box-img" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&auto=format&fit=crop');"></div>
+                <p class="explore-text">Explore Opportunities →</p>
+            </div>
+        </div>
+
+
+
+
+        <!-- Arts & Design -->
+        <div class="box">
+            <div class="box-content">
+                <div class="category-header">
+                    <i class="fas fa-palette"></i>
+                    <h2>Arts & Design</h2>
+                </div>
+                <p class="category-subtitle">Digital Art, Graphic Design, UI/UX, Animation</p>
+                <div class="box-img" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1509343256512-d77a5cb3791b?w=1000&auto=format&fit=crop');"></div>
+                <p class="explore-text">Explore Arts →</p>
+            </div>
+        </div>
+
+
+
+
+        <!-- Soft Skills -->
+        <div class="box">
+            <div class="box-content">
+                <div class="category-header">
+                    <i class="fas fa-comments"></i>
+                    <h2>Soft Skills & Productivity</h2>
+                </div>
+                <p class="category-subtitle">Public Speaking, Time Management, Leadership</p>
+                <div class="box-img" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&auto=format&fit=crop');"></div>
+                <p class="explore-text">Explore Skills →</p>
+            </div>
+        </div>
+
+
+
+
+        <!-- Innovation -->
+        <div class="box">
+            <div class="box-content">
+                <div class="category-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Innovation & Research</h2>
+                </div>
+                <p class="category-subtitle">Startup Ideas, Science Projects, R&D</p>
+                <div class="box-img" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000&auto=format&fit=crop');"></div>
+                <p class="explore-text">Explore Ideas →</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer>
+        <div class="foot-panel1">
+            Back to Top
+        </div>
+        <div class="foot-panel2">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <p>Transforming education through AI</p>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p>support@skillquest.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 SkillQuest - AI-Powered Learning Platform
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to speak text
+            function speakText(text) {
+                // Create speech synthesis utterance
+                let utterance = new SpeechSynthesisUtterance();
+                utterance.text = text;
+                utterance.lang = 'en-US';
+                utterance.rate = 1.0;
+                utterance.pitch = 1.0;
+                utterance.volume = 1.0;
+
+
+
+
+                // Speak the text
+                window.speechSynthesis.speak(utterance);
+            }
+
+
+
+
+            // Add hover effect to all text elements
+            document.body.addEventListener('mouseover', function(e) {
+                // Check if the target has text content
+                if (e.target.textContent &&
+                    e.target.textContent.trim() !== '' &&
+                    !e.target.classList.contains('fa-solid') &&
+                    !e.target.classList.contains('fas')) {
+                   
+                    // Cancel any ongoing speech
+                    window.speechSynthesis.cancel();
+                   
+                    // Speak the text content
+                    speakText(e.target.textContent.trim());
+                }
+            });
+
+
+
+
+            // Stop speaking when mouse leaves
+            document.body.addEventListener('mouseout', function() {
+                window.speechSynthesis.cancel();
+            });
+
+
+
+
+            // Handle microphone button
+            const micButton = document.getElementById('micButton');
+            if (micButton) {
+                micButton.addEventListener('click', function() {
+                    window.speechSynthesis.cancel(); // Cancel any ongoing speech
+                    speakText("Welcome to SkillQuest! I'm your voice assistant. Hover over any text to hear it read aloud.");
+                });
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

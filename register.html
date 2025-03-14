@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - SkillQuest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="form-container">
+            <div class="logo"></div>
+            <h2>Create Account</h2>
+            <form id="registerForm" class="register-form">
+                <div class="form-group">
+                    <input type="email" id="email" required placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" required placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="name" required placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="age" required placeholder="Age">
+                </div>
+                <div class="form-group">
+                    <select id="educationLevel" required>
+                        <option value="">Select Education Level</option>
+                        <option value="school">School Student</option>
+                        <option value="college">College Student</option>
+                    </select>
+                </div>
+                <div class="form-group school-options hidden">
+                    <select id="schoolGrade">
+                        <option value="1-5">Grade 1-5</option>
+                        <option value="6-8">Grade 6-8</option>
+                        <option value="9-10">Grade 9-10</option>
+                        <option value="11-12">Grade 11-12</option>
+                    </select>
+                </div>
+                <div class="form-group college-options hidden">
+                    <select id="collegeStream">
+                        <option value="computer">Computer Science</option>
+                        <option value="mechanical">Mechanical Engineering</option>
+                        <option value="electrical">Electrical Engineering</option>
+                        <option value="civil">Civil Engineering</option>
+                        <option value="architecture">Architecture</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="profileType" multiple required>
+                        <option value="mentee">Looking for Mentor</option>
+                        <option value="mentor">Want to be Mentor</option>
+                        <option value="companion">Project Companion</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="skills" placeholder="Skills (comma-separated)">
+                    <small>Example: Python, JavaScript, Machine Learning</small>
+                </div>
+                <div class="form-group">
+                    <textarea id="bio" placeholder="Tell us about yourself and what you're looking for"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="profilePicture">Profile Picture</label>
+                    <input type="file" id="profilePicture" accept="image/*">
+                </div>
+                <button type="submit" class="register-btn">Create Account</button>
+                <p class="error-message" id="errorMessage"></p>
+            </form>
+            <p>Already have an account? <a href="login.html">Sign In</a></p>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="register.js"></script>
+</body>
+</html>
+

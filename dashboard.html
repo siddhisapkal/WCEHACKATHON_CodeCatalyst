@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - InovAstra</title>
+  <!-- Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <!-- Loading overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-spinner">
+      <i class="fas fa-spinner fa-spin fa-3x"></i>
+      <p>Loading your profile...</p>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="brand">
+        <div class="logo-icon">
+          <svg viewBox="0 0 50 50" class="logo-svg">
+            <defs>
+              <linearGradient id="navLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#3498db"/>
+                <stop offset="50%" style="stop-color:#9b59b6"/>
+                <stop offset="100%" style="stop-color:#2ecc71"/>
+              </linearGradient>
+            </defs>
+            <path class="logo-path" fill="url(#navLogoGradient)" d="M25 2L32 20L50 25L32 30L25 48L18 30L0 25L18 20L25 2Z"/>
+            <circle cx="25" cy="25" r="5" fill="#fff" class="logo-center"/>
+          </svg>
+        </div>
+        <span class="brand-text">InovAstra</span>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="skillmatch.html" class="nav-link">
+        <i class="fas fa-users"></i>
+        SkillMatch
+      </a>
+      <div class="user-menu">
+        <span id="userDisplayName">Loading...</span>
+        <button id="logoutBtn" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 50 50" class="logo-svg">
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#3498db"/>
+                  <stop offset="50%" style="stop-color:#9b59b6"/>
+                  <stop offset="100%" style="stop-color:#2ecc71"/>
+                </linearGradient>
+              </defs>
+              <path class="logo-path" fill="url(#logoGradient)" d="M25 2L32 20L50 25L32 30L25 48L18 30L0 25L18 20L25 2Z"/>
+              <circle cx="25" cy="25" r="5" fill="#fff" class="logo-center"/>
+            </svg>
+          </div>
+          <span class="logo-text">InovAstra</span>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <a href="#" class="menu-item active">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="skillmatch.html" class="menu-item">
+          <i class="fas fa-users"></i>
+          <span>SkillMatch</span>
+        </a>
+        <a href="#" class="menu-item">
+          <i class="fas fa-comments"></i>
+          <span>Messages</span>
+        </a>
+        <a href="#" class="menu-item">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <div class="top-bar-left">
+          <div class="brand">
+            <div class="logo-icon">
+              <svg viewBox="0 0 50 50" class="logo-svg">
+                <defs>
+                  <linearGradient id="topBarLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3498db"/>
+                    <stop offset="50%" style="stop-color:#9b59b6"/>
+                    <stop offset="100%" style="stop-color:#2ecc71"/>
+                  </linearGradient>
+                </defs>
+                <path class="logo-path" fill="url(#topBarLogoGradient)" d="M25 2L32 20L50 25L32 30L25 48L18 30L0 25L18 20L25 2Z"/>
+                <circle cx="25" cy="25" r="5" fill="#fff" class="logo-center"/>
+              </svg>
+            </div>
+            <span class="brand-text">InovAstra</span>
+          </div>
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for courses...">
+          </div>
+        </div>
+        <div class="user-menu">
+          <button class="voice-control-btn" id="voiceControlBtn" title="Toggle Voice Assistant">
+            <i class="fas fa-microphone"></i>
+            <span class="voice-status">Voice Off</span>
+          </button>
+          <div class="notifications">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </div>
+          <div class="user-profile">
+            <img src="https://ui-avatars.com/api/?name=User" alt="Profile" id="userProfileImage">
+            <span id="userName">Loading...</span>
+            <div class="dropdown-menu">
+              <a href="#"><i class="fas fa-user"></i> Profile</a>
+              <a href="#"><i class="fas fa-cog"></i> Settings</a>
+              <button id="logoutBtn" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Profile Section -->
+      <div class="profile-section">
+        <div class="profile-header">
+          <div class="profile-image">
+            <img id="profilePicture" src="https://ui-avatars.com/api/?background=random" alt="Profile Picture">
+          </div>
+          <div class="profile-info">
+            <h1 id="userName">Loading...</h1>
+            <p id="userRole">Loading...</p>
+            <p id="userInstitution">Loading...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Section -->
+      <div class="skills-section">
+        <h2>Skills & Interests</h2>
+        <div id="skillTags" class="skill-tags">Loading...</div>
+      </div>
+
+      <!-- Bio Section -->
+      <div class="bio-section">
+        <h2>About Me</h2>
+        <p id="userBio">Loading...</p>
+      </div>
+
+      <!-- Add this floating AI assistant button -->
+      <div class="ai-assistant-button" id="aiButton">
+        <i class="fas fa-robot"></i>
+        <div class="tooltip">AI Assistant</div>
+      </div>
+
+      <!-- Add this before the dashboard-grid div -->
+      <div class="streaks-overview">
+        <div class="streak-header">
+          <h3><i class="fas fa-fire"></i> Learning Streaks</h3>
+          <div class="current-streak">
+            <span class="streak-count">7</span>
+            <span class="streak-label">Days Streak</span>
+          </div>
+        </div>
+        <div class="streak-calendar">
+          <div class="calendar-day" data-date="Mon">
+            <span class="day-label">M</span>
+            <div class="day-marker completed">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="calendar-day" data-date="Tue">
+            <span class="day-label">T</span>
+            <div class="day-marker completed">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="calendar-day" data-date="Wed">
+            <span class="day-label">W</span>
+            <div class="day-marker completed">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="calendar-day" data-date="Thu">
+            <span class="day-label">T</span>
+            <div class="day-marker completed">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="calendar-day active" data-date="Fri">
+            <span class="day-label">F</span>
+            <div class="day-marker today">
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div class="calendar-day" data-date="Sat">
+            <span class="day-label">S</span>
+            <div class="day-marker"></div>
+          </div>
+          <div class="calendar-day" data-date="Sun">
+            <span class="day-label">S</span>
+            <div class="day-marker"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Grid -->
+      <div class="dashboard-grid">
+        <!-- Progress Overview with animated circles -->
+        <div class="grid-item progress-overview">
+          <div class="glass-morphism"></div>
+          <div class="card-header">
+            <h3><i class="fas fa-chart-line"></i> Learning Experience</h3>
+          </div>
+          <div class="progress-stats">
+            <div class="stat-item">
+              <div class="ring-progress" data-progress="75">
+                <div class="sphere-effect"></div>
+                <svg>
+                  <defs>
+                    <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#3498db"/>
+                      <stop offset="100%" style="stop-color:#3498db"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="bg" cx="75" cy="75" r="65"></circle>
+                  <circle class="progress" cx="75" cy="75" r="65"></circle>
+                </svg>
+                <div class="progress-text">
+                  <span class="percentage">75%</span>
+                  <span class="label">Course Progress</span>
+                </div>
+              </div>
+              <span class="stat-label">Learning Journey</span>
+            </div>
+            <div class="stat-item">
+              <div class="ring-progress" data-progress="80">
+                <div class="sphere-effect"></div>
+                <svg>
+                  <defs>
+                    <linearGradient id="successGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#194F9C"/>
+                      <stop offset="100%" style="stop-color:#2980B9"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="bg" cx="75" cy="75" r="65"></circle>
+                  <circle class="progress" cx="75" cy="75" r="65"></circle>
+                </svg>
+                <div class="progress-text">
+                  <span class="percentage">80%</span>
+                  <span class="label">Success Rate</span>
+                </div>
+              </div>
+              <span class="stat-label">Performance Score</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Courses with dynamic bars -->
+        <div class="grid-item active-courses mesh-bg">
+          <div class="mesh-background"></div>
+          <div class="card-header">
+            <h3><i class="fas fa-book"></i> Active Courses</h3>
+          </div>
+          <div class="course-list">
+            <div class="course-item" aria-label="Machine Learning Basics Course, Progress 75 percent">
+              <div class="course-info">
+                <h4>Machine Learning Basics</h4>
+                <div class="progress-bar">
+                  <div class="progress animated-progress" style="width: 75%"></div>
+                </div>
+              </div>
+              <span class="percentage glow-text">75%</span>
+            </div>
+            <div class="course-item">
+              <div class="course-info">
+                <h4>Web Development</h4>
+                <div class="progress-bar">
+                  <div class="progress animated-progress" style="width: 60%"></div>
+                </div>
+              </div>
+              <span class="percentage glow-text">60%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Sessions with floating elements -->
+        <div class="grid-item upcoming-sessions floating-bg">
+          <div class="floating-background"></div>
+          <div class="card-header">
+            <h3><i class="fas fa-calendar"></i> Upcoming Sessions</h3>
+          </div>
+          <div class="session-list">
+            <div class="session-item floating">
+              <div class="session-time">
+                <i class="fas fa-clock pulse"></i>
+                <span>2:00 PM Today</span>
+              </div>
+              <h4>AI Ethics Discussion</h4>
+              <span class="session-type glow">Group Session</span>
+            </div>
+            <div class="session-item floating">
+              <div class="session-time">
+                <i class="fas fa-clock pulse"></i>
+                <span>10:00 AM Tomorrow</span>
+              </div>
+              <h4>Python Programming</h4>
+              <span class="session-type glow">1-on-1 Tutoring</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add this after the existing grid items in dashboard-grid -->
+        <div class="grid-item ai-learning-paths">
+          <div class="card-header">
+            <h3><i class="fas fa-brain"></i> AI Learning Paths</h3>
+          </div>
+          <div class="learning-paths-content">
+            <div class="path-item">
+              <div class="path-icon"><i class="fas fa-code"></i></div>
+              <div class="path-info">
+                <h4>Coding & Development</h4>
+                <div class="progress-bar">
+                  <div class="progress animated-progress" style="width: 65%"></div>
+                </div>
+                <span class="adaptive-label">Adapting to your pace</span>
+              </div>
+            </div>
+            <div class="path-item">
+              <div class="path-icon"><i class="fas fa-robot"></i></div>
+              <div class="path-info">
+                <h4>Robotics & AI</h4>
+                <div class="progress-bar">
+                  <div class="progress animated-progress" style="width: 45%"></div>
+                </div>
+                <span class="adaptive-label">Personalizing content</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item mentor-system">
+          <div class="card-header">
+            <h3><i class="fas fa-users"></i> Credit-Based Mentorship</h3>
+          </div>
+          <div class="mentor-content">
+            <div class="credit-info">
+              <div class="credit-score">
+                <span class="score">350</span>
+                <span class="label">Credits Earned</span>
+              </div>
+              <div class="credit-actions">
+                <button class="credit-btn">Find Mentor</button>
+                <button class="credit-btn">Become Mentor</button>
+              </div>
+            </div>
+            <div class="mentor-matches">
+              <h4>AI-Matched Mentors</h4>
+              <div class="mentor-list">
+                <div class="mentor-item">
+                  <img src="https://ui-avatars.com/api/?name=John+Smith&background=random" alt="Mentor">
+                  <div class="mentor-details">
+                    <h5>John Smith</h5>
+                    <span>AI & Machine Learning</span>
+                  </div>
+                </div>
+                <div class="mentor-item">
+                  <img src="https://ui-avatars.com/api/?name=Sarah+Jones&background=random" alt="Mentor">
+                  <div class="mentor-details">
+                    <h5>Sarah Jones</h5>
+                    <span>Web Development</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item virtual-lab">
+          <div class="card-header">
+            <h3><i class="fas fa-flask"></i> Virtual Science Lab</h3>
+          </div>
+          <div class="lab-content">
+            <div class="experiment-carousel">
+              <div class="experiment-item">
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=500&auto=format" alt="Physics Simulation">
+                <h4>Physics: Wave Motion</h4>
+                <button class="start-experiment">Start Simulation</button>
+              </div>
+              <div class="experiment-item">
+                <img src="https://images.unsplash.com/photo-1554475900-0a0350e3fc7b?w=500&auto=format" alt="Chemistry Lab">
+                <h4>Chemistry: Molecular Bonds</h4>
+                <button class="start-experiment">Start Simulation</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  
+  <!-- Custom Scripts -->
+  <script src="dashboard.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

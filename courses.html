@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillQuest - Courses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="courses.css">
+</head>
+<body>
+    <!-- Navbar (same as other pages) -->
+    <nav class="navbar">
+        <!-- ... existing navbar code ... -->
+    </nav>
+
+    <div class="courses-container">
+        <!-- Main Education Level Selector -->
+        <div class="education-selector">
+            <button class="edu-btn active" data-level="school">School</button>
+            <button class="edu-btn" data-level="college">College</button>
+        </div>
+
+        <!-- School Grade Selector -->
+        <div class="grade-selector" id="school-grades">
+            <h3>Select Your Grade</h3>
+            <div class="grade-buttons">
+                <button class="grade-btn" data-grade="1-5">Grade 1-5</button>
+                <button class="grade-btn" data-grade="6-8">Grade 6-8</button>
+                <button class="grade-btn" data-grade="9-10">Grade 9-10</button>
+                <button class="grade-btn" data-grade="11-12">Grade 11-12</button>
+            </div>
+        </div>
+
+        <!-- College Stream Selector -->
+        <div class="stream-selector hidden" id="college-streams">
+            <h3>Select Your Stream</h3>
+            <div class="stream-buttons">
+                <button class="stream-btn" data-stream="computer">Computer Science</button>
+                <button class="stream-btn" data-stream="mechanical">Mechanical Engineering</button>
+                <button class="stream-btn" data-stream="electrical">Electrical Engineering</button>
+                <button class="stream-btn" data-stream="civil">Civil Engineering</button>
+                <button class="stream-btn" data-stream="architecture">Architecture</button>
+                <button class="stream-btn" data-stream="chemical">Chemical Engineering</button>
+            </div>
+        </div>
+
+        <!-- Course Sections -->
+        <!-- Grade 11-12 Courses -->
+        <div class="course-section hidden" id="grade-11-12">
+            <h2>Grade 11-12 Courses</h2>
+            <div class="course-grid">
+                <!-- Physics -->
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="images/physics.jpg" alt="Physics"
+                             onerror="this.src='https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&auto=format&fit=crop'">
+                    </div>
+                    <div class="course-content">
+                        <h3>Physics</h3>
+                        <p>Complete Physics for Grade 11-12 with practical experiments and problem-solving.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 40 hours</span>
+                            <span><i class="fas fa-book"></i> Grade 11-12</span>
+                        </div>
+                        <button class="enroll-btn">Start Learning</button>
+                    </div>
+                </div>
+                <!-- Add more 11-12 courses -->
+            </div>
+        </div>
+
+        <!-- Computer Science Courses -->
+        <div class="course-section hidden" id="computer-courses">
+            <h2>Computer Science Courses</h2>
+            <div class="course-grid">
+                <!-- Python Course -->
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="images/python.jpg" alt="Python Programming" 
+                             onerror="this.src='https://images.unsplash.com/photo-1649180556628-9ba704115795?w=800&auto=format&fit=crop'">
+                    </div>
+                    <div class="course-content">
+                        <h3>Python Programming</h3>
+                        <p>Learn Python from basics to advanced concepts including OOP, Data Structures, and Web Development.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 40 hours</span>
+                            <span><i class="fas fa-signal"></i> Beginner</span>
+                        </div>
+                        <button class="enroll-btn">Enroll Now</button>
+                    </div>
+                </div>
+                <!-- Add more CS courses -->
+            </div>
+        </div>
+
+        <!-- Add more course sections for other grades and streams -->
+    </div>
+
+    <script src="courses.js"></script>
+</body>
+</html> 
